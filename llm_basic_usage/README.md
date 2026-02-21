@@ -32,6 +32,30 @@
 
 3. Advanced features include batch indexing with metadata preservation, LangChain integration for building retrieval chains with LCEL, and semantic search with relevance scoring to provide context-aware responses with source attribution.
 
+## LangChain Tools
+
+1. This project contains practical examples demonstrating how to create and integrate custom tools with LangChain agents, enabling LLMs to perform precise, verifiable actions beyond text generation.
+
+2. It covers essential tool patterns including single-parameter tools with the `@tool` decorator for mathematical calculations like `calculate_circumference`, multi-parameter tools with optional arguments for geometric computations like `calculate_hypotenuse`, and a custom `CustomAgentExecutor` class that manages the tool-call loop with scratchpad-based reasoning.
+
+3. Advanced features include multimodal tool usage with the Salesforce BLIP image captioning model, where a `caption_image` tool accepts image URLs and returns natural language descriptions, demonstrating how to wrap deep learning models as LangChain-compatible tools for use within conversational agents.
+
+## LangChain Agents
+
+1. This project contains practical examples demonstrating how to build intelligent agents using LangChain that can reason, plan, and execute multi-step tasks by dynamically selecting and invoking tools.
+
+2. It covers three core agent types including Zero-Shot ReAct for SQL database querying with `create_sql_agent`, Conversational ReAct with persistent session-based memory using `InMemoryChatMessageHistory`, and ReAct Docstore for information retrieval via Wikipedia search and lookup tools.
+
+3. Advanced features include a custom `CustomAgentExecutor` class with configurable iteration limits and scratchpad-based reasoning, history-aware agents that analyze prior conversation context to avoid redundant calculations, and tool-binding patterns using `bind_tools` with `final_answer` enforcement for structured responses.
+
+## LangChain Retrieval Agents
+
+1. This project contains practical examples demonstrating how to combine RAG and agent-based reasoning to build a conversational assistant that dynamically retrieves knowledge from a Pinecone vector store built on the SQuAD dataset.
+
+2. It covers two core approaches including a RAG chatbot using `RunnableWithMessageHistory` and `RunnablePassthrough` for context-injected LCEL chains with windowed session memory, and a RAG agent using a custom `RAGAgentExecutor` with a `knowledge_base` tool that retrieves relevant passages on demand and a `final_answer` tool for structured response delivery.
+
+3. Advanced features include session-aware windowed conversation history managed via `InMemoryChatMessageHistory`, graceful fallback when max iterations are exceeded, and flexible tool orchestration that bypasses retrieval for simple conversational exchanges while querying the vector store for factual or domain-specific questions.
+
 ## Prerequisites
 
 - Python 3.x
