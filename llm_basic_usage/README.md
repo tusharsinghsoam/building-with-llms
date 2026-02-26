@@ -56,9 +56,25 @@
 
 3. Advanced features include session-aware windowed conversation history managed via `InMemoryChatMessageHistory`, graceful fallback when max iterations are exceeded, and flexible tool orchestration that bypasses retrieval for simple conversational exchanges while querying the vector store for factual or domain-specific questions.
 
+## LangChain Multi-Query RAG
+
+1. This project contains practical examples demonstrating how to improve retrieval quality in RAG pipelines using LangChain's `MultiQueryRetriever`, which automatically generates multiple semantically varied reformulations of a user query to capture a broader range of relevant documents from the knowledge base.
+
+2. It covers the full pipeline including loading and chunking the AI arXiv dataset into `Document` objects with rich metadata, embedding with the `BAAI/bge-small-en` model, batch indexing into a Pinecone vector store, and wiring `MultiQueryRetriever` on top of a `PineconeVectorStore` retriever backed by a HuggingFace LLM.
+
+3. Advanced features include LCEL-based retrieval chain composition that merges multi-query results with a structured prompt template for grounded answer generation, logging of generated sub-queries for transparency, and a clean teardown step to delete the Pinecone index after the demo.
+
+## LangChain Miscellaneous
+
+1. This project contains practical examples covering three foundational LangChain topics: understanding how the LCEL pipe operator works under the hood, building a production-ready document chunking pipeline for RAG ingestion, and enabling real-time streaming responses from chat models.
+
+2. It covers LCEL internals through a custom `Runnable` class that replicates the `|` pipe operator via `__or__`, followed by real usage with `RunnableParallel`, `RunnablePassthrough`, and `RunnableLambda` for composing multi-retriever chains, post-processing output, and injecting arbitrary functions into LCEL pipelines.
+
+3. Advanced features include token-aware document chunking using `tiktoken` with `RecursiveCharacterTextSplitter`, token distribution analysis and visualization with `matplotlib` and `seaborn`, MD5-based deterministic chunk ID generation, serialization of the processed corpus to JSONL for downstream indexing, and streaming via `.stream()` — both directly on the chat model and through LCEL chains with `StrOutputParser` — with a pattern for collecting tokens in real-time while building the full response.
+
 ## Prerequisites
 
-- Python 3.x
+- Python 3.11
 - API keys for LLM providers (e.g., Gemini API, HuggingFace API, Pinecone API)
 - Required libraries: `google-generativeai`, `requests`, `httpx`, `langchain-core`, `langchain-huggingface`, `langchain-pinecone`, `langchain-text-splitters`, `numexpr`, `tiktoken`,  `pinecone`, `tqdm`
 - Basic understanding of REST APIs, JSON, prompt engineering, and vector databases
